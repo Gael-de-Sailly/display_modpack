@@ -90,6 +90,10 @@ function Font:new(def)
 	setmetatable(font, self)
 	self.__index = self
 
+	if type(font.lsb) ~= "table" then
+		font.lsb = {}
+	end
+
 	-- Check if fixedwidth
 	for codepoint, width in pairs(font.widths) do
 		font.fixedwidth = font.fixedwidth or width
@@ -258,8 +262,9 @@ function Font:render(text, texturew, textureh, style)
 
 			-- Add image only if it is visible (at least partly)
 			if x + self.widths[codepoint] >= 0 and x <= texturew then
+				local lsb = self.lsb[codepoint] or 0
 				texture = texture..
-					string.format(":%d,%d=font_%s_%04x.png", x, y, self.name, codepoint)
+					string.format(":%d,%d=font_%s_%04x.png", x+lsb, y, self.name, codepoint)
 			end
 			x = x + self.widths[codepoint]
 		end

@@ -125,9 +125,11 @@ end
 -- @key height (mandatory) Height in pixels of all font textures
 -- @key widths (mandatory) Array of character widths in pixels, indexed by
 -- UTF codepoints
+-- @key lsb (optional) Array of left sidebearings (horizontal offset) in
+-- pixels, indexed by UTF codepoints, defaults to 0.
 -- @key margintop (optional) Margin (in texture pixels) added on top of each
 -- char texture.
--- @key marginbottom (optional) dded at bottom of each char texture.
+-- @key marginbottom (optional) added at bottom of each char texture.
 -- @key linespacing (optional) Spacing (in texture pixels) between each lines.
 -- margintop, marginbottom and linespacing can be negative numbers (default 0)
 -- and are to be used to adjust various font styles to each other.
